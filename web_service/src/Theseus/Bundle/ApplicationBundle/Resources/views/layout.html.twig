@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html class="noJS" lang="fr"><!-- <![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"> -->
+        <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+        {% block stylesheets %}
+        {% stylesheets 
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        {% endstylesheets %}
+        {% endblock %}
+        <link href='http://fonts.googleapis.com/css?family=Istok+Web:400,700' rel='stylesheet' type='text/css'>
+    
+        <title>
+            {% block title %}
+            {% endblock %}
+        </title>
+        
+        <!--[if lte IE 9]>
+        {% javascripts '../app/Resources/public/js/html5.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        <![endif]-->
+        <script>
+            var hasJS = function() {
+                var htmlTag = document.getElementsByTagName('html')[0];
+                htmlClass = htmlTag.className.replace('noJS', 'hasJS');
+                htmlTag.className = htmlClass;
+            }();
+        </script>
+    </head>
+    <body>
+        <div id="content">
+            <div id="sidebar">
+            {% block sidebar %}
+                <div>
+                    <ul>
+                        <li>Accueil</li>
+                        <li>Catégorie</li>
+                        <li>Lol</li>
+                    </ul>
+                </div>
+            {% endblock %}
+            </div>
+            <div id="main">
+            {% block page %}
+            {% endblock %}
+            </div>
+        </div>
+    </body>
+    {% block javascripts %}
+    {% javascripts 
+                   
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {% endblock %}
+</html>

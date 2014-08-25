@@ -1,0 +1,4 @@
+theseus_application_main:
+    resource: "@TheseusApplicationBundle/Controller/MainController.php"
+    type:     annotation
+    prefix:   /main
