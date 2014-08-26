@@ -1,8 +1,5 @@
-/
 !app/cache/.gitkeep
 !app/logs/.gitkeep
-/composer.phar
-/composer.lock
 /web_service/app/sessions/
 /web_service/web/css/*
 /web_service/web/js/*
