@@ -1,0 +1,17 @@
+<div ng-controller="LoginController" ng-model="isLogged" >
+	<form class="navbar-form navbar-right" role="search" ng-hide="isLogged">
+	    <button type="submit" class="btn btn-default" ng-click="Connection()">Connexion</button>
+	    <button type="submit" class="btn btn-default" ng-click="Register()">Inscription</button>
+	</form>
+	<form  ng-show="isLogged"class="navbar-form navbar-right" role="search">
+		<button type="submit" class="btn btn-default" ng-click="Logout()">Logout {{username}}</button>
+	</form>
+	<form  ng-show="connection_screen"
+	class="navbar-form navbar-right" role="search">
+		<input type="text" placeholder="Enter email">
+		<input type="text" placeholder="Enter password">
+		<button type="submit" class="btn btn-default" ng-click="Login()">Connect !</button>
+	</form>
+	
+
+</div>
