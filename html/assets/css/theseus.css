@@ -28,3 +28,7 @@
 	border: solid white;
 	border-radius: 5px;
 }
+
+.admin_top_menu {
+	display: inline-block;
+}

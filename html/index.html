@@ -16,15 +16,38 @@
 
 <div >
     <div ng-include src="'templates/navbar.html'"></div>
-    <div ng-show="role_power"> 
-        <div ng-include src="'templates/admin.html'"></div>
-        <div ng-include src="'templates/admin_users.html'"></div>
-        <div ng-include src="'templates/admin_products.html'"></div>
-        <div ng-include src="'templates/admin_events.html'"></div>
-        <div ng-include src="'templates/admin_categories.html'"></div>
-        <div ng-include src="'templates/admin_orders.html'"></div>
-        <div ng-include src="'templates/admin_suppliers.html'"></div>
-        <div ng-include src="'templates/admin_makers.html'"></div>
+    <div>
+        <div>
+            <ul>
+                <li ng-click="ToggleAdminMenus('displayAdmin')" ng-show="displayAdminMenu" 
+			class="admin_top_menu">Home</li>
+                <li ng-click="ToggleAdminMenus('displayUsers')" ng-show="displayUsersMenu" 
+			class="admin_top_menu">Users</li>
+                <li ng-click="ToggleAdminMenus('displayCustomers')" ng-show="displayCustomersMenu"  
+			class="admin_top_menu">Customers</li>
+                <li ng-click="ToggleAdminMenus('displayProducts')" ng-show="displayProductsMenu" 
+			class="admin_top_menu">Products</li>
+                <li ng-click="ToggleAdminMenus('displayEvents')" ng-show="displayEventsMenu" 
+			class="admin_top_menu">Events</li>
+                <li ng-click="ToggleAdminMenus('displayCategories')" ng-show="displayProductsMenu" 
+			class="admin_top_menu">Categories</li>
+                <li ng-click="ToggleAdminMenus('displayOrders')" ng-show="displayOrdersMenu" 
+			class="admin_top_menu">Orders</li>
+                <li ng-click="ToggleAdminMenus('displaySuppliers')" ng-show="displaySuppliersMenu" 
+			class="admin_top_menu">Suppliers</li>
+                <li ng-click="ToggleAdminMenus('displayMakers')" ng-show="displayMakersMenu" 
+			class="admin_top_menu">Makers</li>
+            </ul>
+        </div>
+        <div ng-show="displayAdmin" ng-include src="'templates/admin.html'"></div>
+        <div ng-show="displayUsers" ng-include src="'templates/admin_users.html'"></div>
+        <div ng-show="displayCustomers" ng-include src="'templates/admin_customers.html'"></div>
+        <div ng-show="displayProducts" ng-include src="'templates/admin_products.html'"></div>
+        <div ng-show="displayEvents" ng-include src="'templates/admin_events.html'"></div>
+        <div ng-show="displayCategories" ng-include src="'templates/admin_categories.html'"></div>
+        <div ng-show="displayOrders" ng-include src="'templates/admin_orders.html'"></div>
+        <div ng-show="displaySuppliers" ng-include src="'templates/admin_suppliers.html'"></div>
+        <div ng-show="displayMakers" ng-include src="'templates/admin_makers.html'"></div>
     </div>
     <div ng-include src="'templates/jumbotron.html'"></div>
     <div ng-include src="'templates/best_sales.html'"></div>

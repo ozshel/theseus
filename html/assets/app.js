@@ -19,20 +19,139 @@ theseus.controller("LoginController", function($scope, $rootScope, ngDialog) {
         $rootScope.username = "NONE";
     }
     $scope.Login = function() {
+        $rootScope.displayAdminMenu = false;
+        $rootScope.displayPowerMenu = false;
+        $rootScope.displayUsersMenu = false;
+        $rootScope.displayCustomersMenu = false;
+        $rootScope.displayProductsMenu = false;
+        $rootScope.displayEventsMenu = false;
+        $rootScope.displayCategoriesMenu = false;
+        $rootScope.displayOrdersMenu = false;
+        $rootScope.displaySuppliersMenu = false;
+        $rootScope.displayMakersMenu = false;
+        $rootScope.displayAdmin = false;
+        $rootScope.displayPower = false;
+        $rootScope.displayUsers = false;
+        $rootScope.displayCustomers = false;
+        $rootScope.displayProducts = false;
+        $rootScope.displayEvents = false;
+        $rootScope.displayCategories = false;
+        $rootScope.displayOrders = false;
+        $rootScope.displaySuppliers = false;
+        $rootScope.displayMakers = false;
         $rootScope.isLogged = true;
         if ($rootScope.isLogged) {
+            $scope.connection = false;
+            $scope.connection_screen = false;
             $rootScope.username = "toto";
-            $rootScope.roles = ['event', 'products', 'clients', 'power'];
-            $rootScope.role_event = true;
-            $rootScope.role_products = true;
-            $rootScope.role_clients = true;
-            $rootScope.role_power = true;
+            // $rootScope.roles = ['events', 'products', 'customers', 'power'];
+            $rootScope.roles = ['events', 'customers'];
+            // console.log(typeof roles['event']);
+            if($rootScope.roles.indexOf('events') > -1) {
+                // R customers
+                // R products
+                // RW events
+                console.log('events');
+                $rootScope.displayEventsMenu = true;
+                $rootScope.displayAdminMenu = true;
+            }
+            if($rootScope.roles.indexOf('products') > -1 ) {
+                // RW categories
+                // RW products
+                console.log('products');
+                $rootScope.displayProductsMenu = true;
+                $rootScope.displayAdminMenu = true;
+            }
+            if($rootScope.roles.indexOf('customers') > -1 ) {
+                // RW ??? only power ???
+                console.log('customers');
+                $rootScope.displayCustomersMenu = true;
+                $rootScope.displayAdminMenu = true;
+            }
+            if($rootScope.roles.indexOf('power') > -1) {
+                // RW all
+                console.log('power');
+                $rootScope.displayAdminMenu = true;
+                $rootScope.displayPowerMenu = true;
+                $rootScope.displayUsersMenu = true;
+                $rootScope.displayCustomersMenu = true;
+                $rootScope.displayProductsMenu = true;
+                $rootScope.displayEventsMenu = true;
+                $rootScope.displayCategoriesMenu = true;
+                $rootScope.displayOrdersMenu = true;
+                $rootScope.displaySuppliersMenu = true;
+                $rootScope.displayMakersMenu = true;
+            }
+            if($rootScope.displayAdminMenu ) {
+                $rootScope.displayAdmin = true;
+                $rootScope.displayPower = false;
+                $rootScope.displayUsers = false;
+                $rootScope.displayCustomers = false;
+                $rootScope.displayProducts = false;
+                $rootScope.displayEvents = false;
+                $rootScope.displayCategories = false;
+                $rootScope.displayOrders = false;
+                $rootScope.displaySuppliers = false;
+                $rootScope.displayMakers = false;
+            }
             $scope.connection_screen = false;
         }
     }
+    $rootScope.ToggleAdminMenus = function (item){
+        console.log(item);
+        $scope.HideAllAdminMenu();
+        if (item === 'displayAdmin') {
+            $rootScope.displayAdmin = true;
+        }
+        if (item === 'displayUsers') {
+            $rootScope.displayUsers = true;
+        }
+        if (item === 'displayCustomers') {
+            $rootScope.displayCustomers = true;
+        }
+        if (item === 'displayProducts') {
+            $rootScope.displayProducts = true;
+        }
+        if (item === 'displayEvents') {
+            $rootScope.displayEvents = true;
+        }
+        if (item === 'displayCategories') {
+            $rootScope.displayCategories = true;
+        }
+        if (item === 'displayOrders') {
+            $rootScope.displayOrders = true;
+        }
+        if (item === 'displaySuppliers') {
+            $rootScope.displaySuppliers = true;
+        }
+        if (item === 'displayMakers') {
+            $rootScope.displayMakers = true;
+        }
+    }
+    $scope.HideAllAdminMenu = function() {
+        $rootScope.displayAdmin = false;
+        $rootScope.displayUsers = false;
+        $rootScope.displayCustomers = false;
+        $rootScope.displayProducts = false;
+        $rootScope.displayEvents = false;
+        $rootScope.displayCategories = false;
+        $rootScope.displayOrders = false;
+        $rootScope.displaySuppliers = false;
+        $rootScope.displayMakers = false;
+    }
+    $scope.RemoveRoles = function() {
+        $rootScope.role_events = false;
+        $rootScope.role_products = false;
+        $rootScope.role_customers = false;
+        $rootScope.role_power = false;
+        $rootScope.role_admin = false;
+    }
     $scope.Logout = function() {
+        $scope.connection_screen = false;
         $scope.isLogged = false;
         $scope.username = "NONE";
+        document.location.href="/" 
+
     }
     $scope.Connection = function() {
         $scope.connection_screen = !$scope.connection_screen;
