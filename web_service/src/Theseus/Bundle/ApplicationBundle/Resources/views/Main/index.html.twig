@@ -3,5 +3,8 @@
 Theseus
 {% endblock %}
 {% block page %}
+    <div class="item log">
+        <a href="{{ path('fos_user_security_logout') }}" class="logout"><span>Déconnexion</span></a>
+    </div>
     Welcome !
 {% endblock %}

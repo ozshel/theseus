@@ -1,0 +1,5 @@
+services:
+    #managers
+    theseus.login_manager:
+        class: Theseus\Bundle\CoreBundle\Manager\LoginManager
+        arguments: [@router, @security.context]

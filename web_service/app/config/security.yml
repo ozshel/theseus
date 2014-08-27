@@ -11,29 +11,31 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
-        dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
-        login:
-            pattern:  ^/demo/secured/login$
-            security: false
-
         secured_area:
-            pattern:    ^/demo/secured/
+            pattern:    ^/
+            anonymous: true
             form_login:
-                check_path: _security_check
-                login_path: _demo_login
-            logout:
-                path:   _demo_logout
-                target: _demo
+                login_path:  fos_user_security_login
+                check_path:  fos_user_security_check
+                provider: fos_userbundle
+                csrf_provider: form.csrf_provider
+                success_handler: theseus.login_manager
+            logout: 
+                path: fos_user_security_logout
+                target: fos_user_security_login
         main:
             pattern: ^/
             form_login:
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
-            logout:       true
-            anonymous:    true
+                success_handler: theseus.login_manager
+            logout:
+                path: fos_user_security_logout
+                target: fos_user_security_login
+            anonymous: true
+            context: auth
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }

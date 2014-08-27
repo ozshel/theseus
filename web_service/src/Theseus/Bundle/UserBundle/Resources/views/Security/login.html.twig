@@ -1,0 +1,24 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% block title %}
+Identification
+{% endblock %}
+{% block fos_user_content %}
+<div class="block-login">
+    <h1 class="title">Bienvenue <span>identifiez vous</span></h1>
+    
+    <form action="{{ path("fos_user_security_check") }}" method="POST">
+        
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        <div class="field field-text">
+            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="Identifiant"/>
+        </div>
+        <div class="field field-password valid">
+            <input type="password" id="password" name="_password" required="required" placeholder="Mot de passe"/>
+        </div>                    
+        <input type="submit" id="_submit" name="_submit" value="Connexion">
+    </form>
+    <div class="item log">
+        <a href="{{ path('fos_user_security_logout') }}" class="logout"><span>Déconnexion</span></a>
+    </div>
+</div>
+{% endblock fos_user_content %}

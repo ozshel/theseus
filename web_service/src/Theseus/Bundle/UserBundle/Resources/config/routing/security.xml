@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="fos_user_security_login" pattern="/login" host="{domain}">
+        <default key="_controller">FOSUserBundle:Security:login</default>
+        <default key="domain">%domain%</default>
+        <requirement key="domain">%domain%</requirement>
+    </route>
+
+    <route id="fos_user_security_check" pattern="/login_check" host="{domain}">
+        <default key="_controller">FOSUserBundle:Security:check</default>
+        <default key="domain">%domain%</default>
+        <requirement key="domain">%domain%</requirement>
+    </route>
+
+    <route id="fos_user_security_logout" pattern="/logout" host="{domain}">
+        <default key="_controller">FOSUserBundle:Security:logout</default>
+        <default key="domain">%domain%</default>
+        <requirement key="domain">%domain%</requirement>
+    </route>
+</routes>
