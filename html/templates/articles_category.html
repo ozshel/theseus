@@ -1,0 +1,34 @@
+<div class="panel panel-default" id="articles_by_category">
+    <div class="panel-body">
+        <div class="col-md-12">
+            <h1>Articles in {{selectedCategory}} category</h1>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </div>
+<ul>
+        <span ng-show="moreTenArticles"   data-ng-switch on="($index) % scaleArticles == 0" >
+            <span  >
+                <li ng-hide="HidePrevArticles" class="article_li" ng-class="">
+                    <button ng-click="tenPrevArticles()" class="btn btn-default btn-xs"><span>10 prev</span></button>
+                </li>
+            </span>
+            <span  >
+                <li ng-hide="HideNextArticles"  class="article_li" ng-class="">
+                    <button ng-click="tenNextArticles()" class="btn btn-default btn-xs"><span>10 next</span></button>
+                </li>
+            </span>
+        </span>
+</ul>
+        <div ng-show="$index >= showStartArticles" ng-class="{hidden: $index >= showEndArticles}"  class="col-md-3" ng-repeat="article in articles_by_category">
+            <strong>{{article.id}}</strong><br>
+            <strong>{{article.name}}</strong><br>
+        	REF:{{article.ref}}<br>
+        	{{article.price}}<br>
+        	<em>{{article.desc}}</em><br>
+        	<img class="img_item" src="{{article.img}}" alt="{{article.img}}"><br>
+        	<button ng-click="ShowArticle(article.id)">View</button>
+        </div>
+    </div>
+    <div class="panel-footer">Articles in {{selectedCategory}} category</div>
+</div>

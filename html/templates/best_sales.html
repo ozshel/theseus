@@ -1,4 +1,4 @@
-<div class="panel panel-default" ng-controller="BestSales" id="best_sales">
+<div class="panel panel-default" ng-controller="Articles" id="best_sales">
     <div class="panel-body">
         <div class="col-md-12">
             <h1>Meilleurs ventes</h1>
@@ -10,12 +10,12 @@
         <span ng-show="moreTen"   data-ng-switch on="($index) % scale == 0" >
             <span  >
                 <li ng-hide="HidePrev" class="article_li" ng-class="">
-                    <button ng-click="hideTen()" class="btn btn-default btn-xs"><span>10 prev</span></button>
+                    <button ng-click="tenPrev()" class="btn btn-default btn-xs"><span>10 prev</span></button>
                 </li>
             </span>
             <span  >
                 <li ng-hide="HideNext"  class="article_li" ng-class="">
-                    <button ng-click="showTen()" class="btn btn-default btn-xs"><span>10 next</span></button>
+                    <button ng-click="tenNext()" class="btn btn-default btn-xs"><span>10 next</span></button>
                 </li>
             </span>
         </span>
@@ -28,7 +28,7 @@
         	<em>{{article.desc}}</em><br>
         	<img class="img_item" src="{{article.img}}" alt="{{article.img}}"><br>
         	<!-- <a href="{{sale.link}}" target="_blank">View</a><br> -->
-        	<button ng-click="ShowArticle(article.id)">View</button>
+        	<button ng-click="ShowBestArticle(article.id)">View</button>
         	<!-- <div ng-show="showArticle" class="col-md-12">{{sale.long_desc}}<br></div> -->
         </div>
     </div>

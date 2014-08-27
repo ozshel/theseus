@@ -1,9 +1,18 @@
 var theseus = angular.module("theseus", ['ng', 'seo', 'ngDialog'])
 // var theseus = angular.module("theseus", ['ng', 'seo'])
     
+theseus.controller("indexPage", function($scope, $rootScope) {
+    $scope.ReturnIndexPage = function() {
+        $rootScope.hideHomePage = false;
+    }
+} );
+
 theseus.controller("HomeAdmin", function($scope) {
     $scope.helloTo = {};
     $scope.helloTo.title = "World,HHH AngularJS";
+} );
+     
+theseus.controller("Categories", function($scope) {
 } );
    
 theseus.controller("RegisterController", function($scope, ngDialog) {
@@ -168,13 +177,118 @@ theseus.controller("LoginController", function($scope, $rootScope, ngDialog) {
     $scope.checkLogin();
 } );
 
-theseus.controller("BestSales", function($scope, ngDialog) {
+theseus.controller("Articles", function($scope, $rootScope, $http, ngDialog) {
+    $scope.GetCategories = function() { 
+        $scope.categories = [];
+        $scope.categories.push({'id': '1', 'name': 'Auto', 'desc': 'blabla bla ...'});
+        $scope.categories.push({'id': '2', 'name': 'Mobile phones', 'desc': 'blabla bla ...'});
+        $scope.categories.push({'id': '3', 'name': 'Cats', 'desc': 'blabla bla ...'});
+    };
+    $scope.ArticlesCategory = function(id_category) {
+        console.log(id_category);
+        $http.get('/tmp/articles_by_category.json').success(function(data) {
+            $rootScope.articles_by_category = data;
+            $rootScope.selectedCategory = id_category;
+            console.log($rootScope.hideHomePage);
+            console.log('view article from category: ' + id_category);         
+            $rootScope.scaleArticles = 10;
+            $rootScope.hiddenArticles = 0;
+            $rootScope.showStartArticles = 0;
+            $rootScope.showEndArticles = $rootScope.scaleArticles;
+
+            console.log($scope.articles_by_category);
+            if($rootScope.articles_by_category.length > 10) {
+                $rootScope.moreTenArticles = true;
+
+            }
+            else {
+                $rootScope.moreTenArticles = false;
+            }
+            $rootScope.hideHomePage = true;
+        });
+    }
+    $scope.UpdateArticlesCategory = function(id_category) {
+        $rootScope.hideHomePage = true;
+        $scope.selectedCategory = id_category;
+        console.log($rootScope.hideHomePage);
+        console.log('view article from category: ' + id_category);         
+        $scope.scaleArticles = 10;
+        $scope.hiddenArticles = 0;
+        $scope.showStartArticles = 0;
+        $scope.showEndArticles = $scope.scaleArticles;
+        $scope.articles_by_category = [];
+        for (var i = 100 - 1; i >= 0; i--) {
+            $scope.articles_by_category.push(
+                {
+                    'id': i,
+                    'name': "Top cat",
+                    'ref': "1234567890",
+                    'price': "10$",
+                    'desc': "this is a cat",
+                    'img': "http://exmoorpet.com/wp-content/uploads/2012/08/cat.png",
+                    'link': "http://toto.com",
+                    "long_desc": "jhgjghjj dsfsdf sdf sf sf sf sf sdfsd fs fs fsd fsf sfsdf dsf sf sdsdfdsfsdfsfsdfs",
+                }
+            );
+        };
+        console.log($scope.articles_by_category);
+        if($scope.articles_by_category.length > 10) {
+            $scope.moreTenArticles = true;
+
+        }
+        else {
+            $scope.moreTenArticles = false;
+        }
+        
+    };
+    $scope.tenPrevArticles = function() {
+        $scope.hiddenArticles = 0;
+        $scope.showStartArticles = $scope.showStartArticles-$scope.scaleArticles;
+        $scope.showEndArticles = $scope.showEndArticles-$scope.scaleArticles;
+        if($scope.showStartArticles <= 1) {
+            $scope.HidePrevArticles = true;
+        }
+        else {
+            $scope.HidePrevArticles = false;
+        }
+        if($scope.showEndArticles  >= $scope.articles_by_category.length) {
+            $scope.HideNextArticles = true;
+        }
+        else {
+            $scope.HideNextArticles = false;
+        }
+    }
+    $scope.tenNextArticles = function() {
+        $scope.hiddenArticles = 0;
+        $scope.showStartArticles = $scope.showEndArticles;
+        $scope.showEndArticles = $scope.showEndArticles+$scope.scaleArticles;
+        if($scope.showStartArticles + 1 <= 1) {
+            $scope.HidePrevArticles = true;
+        }
+        else {
+            $scope.HidePrevArticles = false;
+        }
+        if($scope.showEndArticles  >= $scope.articles_by_category.length) {
+            $scope.HideNextArticles = true;
+        }
+        else {
+            $scope.HideNextArticles = false;
+        }
+    }
+    $scope.showAllArticles = function() {
+        $scope.hiddenArticles = 0;
+        $scope.showStartArticles =  0;
+        $scope.showEndArticles = $scope.countArticles;
+    }
+    // $scope.HidePrevArticles = true;
+
+
     $scope.HidePrev = true;
     $scope.GetBestSales = function() {    
-    $scope.scale = 10;
-    $scope.hidden = 0;
-    $scope.showStart = 0;
-    $scope.showEnd = $scope.scale;
+        $scope.scale = 10;
+        $scope.hidden = 0;
+        $scope.showStart = 0;
+        $scope.showEnd = $scope.scale;
         $scope.best_sales = [];
         for (var i = 100 - 1; i >= 0; i--) {
             $scope.best_sales.push(
@@ -200,6 +314,17 @@ theseus.controller("BestSales", function($scope, ngDialog) {
     }
     $scope.ShowArticle = function(id) {
         console.log('article' + id);
+        $scope.article = $scope.articles_by_category[id];
+        console.log($scope.article);
+        ngDialog.open({ 
+            template: 'templates/article.html',
+            scope: $scope,
+        })
+        
+        ;    
+    }
+    $scope.ShowBestArticle = function(id) {
+        console.log('article' + id);
         $scope.article = $scope.best_sales[id];
         console.log($scope.article);
         ngDialog.open({ 
@@ -209,7 +334,7 @@ theseus.controller("BestSales", function($scope, ngDialog) {
         
         ;    
     }
-    $scope.hideTen = function() {
+    $scope.tenPrev = function() {
         $scope.hidden = 0;
         $scope.showStart = $scope.showStart-$scope.scale;
         $scope.showEnd = $scope.showEnd-$scope.scale;
@@ -226,7 +351,7 @@ theseus.controller("BestSales", function($scope, ngDialog) {
             $scope.HideNext = false;
         }
     }
-    $scope.showTen = function() {
+    $scope.tenNext = function() {
         $scope.hidden = 0;
         $scope.showStart = $scope.showEnd;
         $scope.showEnd = $scope.showEnd+$scope.scale;
@@ -248,15 +373,18 @@ theseus.controller("BestSales", function($scope, ngDialog) {
         $scope.showStart =  0;
         $scope.showEnd = $scope.count;
     }
+    $scope.GetCategories();
     $scope.GetBestSales();
+    $rootScope.hideHomePage = false;
 } );
 
 theseus.controller("NextEvents", function($scope, ngDialog) {
+    $scope.HidePrev = true;
     $scope.GetNextEvents = function() {
-    $scope.scale = 5;
-    $scope.hidden = 0;
-    $scope.showStart = 0;
-    $scope.showEnd = $scope.scale;
+        $scope.scale = 5;
+        $scope.hidden = 0;
+        $scope.showStart = 0;
+        $scope.showEnd = $scope.scale;
         $scope.next_events = [];
         for (var i = 20 - 1; i >= 0; i--) {
             $scope.next_events.push(
@@ -289,7 +417,7 @@ theseus.controller("NextEvents", function($scope, ngDialog) {
             scope: $scope,
         });        
     }
-    $scope.hideTen = function() {
+    $scope.tenPrev = function() {
         $scope.hidden = 0;
         $scope.showStart = $scope.showStart-$scope.scale;
         $scope.showEnd = $scope.showEnd-$scope.scale;
@@ -306,7 +434,7 @@ theseus.controller("NextEvents", function($scope, ngDialog) {
             $scope.HideNext = false;
         }
     }
-    $scope.showTen = function() {
+    $scope.tenNext = function() {
         $scope.hidden = 0;
         $scope.showStart = $scope.showEnd;
         $scope.showEnd = $scope.showEnd+$scope.scale;

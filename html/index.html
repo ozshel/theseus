@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="fragment" content="!" />
-    <title>toto</title>
+    <title>.: T H E S E U S :.</title>
     <!-- Bootstrap core CSS -->
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/theseus.css" rel="stylesheet">
@@ -49,9 +49,12 @@
         <div ng-show="displaySuppliers" ng-include src="'templates/admin_suppliers.html'"></div>
         <div ng-show="displayMakers" ng-include src="'templates/admin_makers.html'"></div>
     </div>
-    <div ng-include src="'templates/jumbotron.html'"></div>
-    <div ng-include src="'templates/best_sales.html'"></div>
-    <div ng-include src="'templates/next_events.html'"></div>
+    <div ng-controller="Articles">
+        <div ng-show="hideHomePage" ng-include src="'templates/articles_category.html'">Articles by category pages</div>
+        <div ng-hide="hideHomePage" ng-include src="'templates/jumbotron.html'"></div>
+        <div ng-hide="hideHomePage" ng-include src="'templates/best_sales.html'"></div>
+        <div ng-hide="hideHomePage" ng-include src="'templates/next_events.html'"></div>
+    </div>
 </div>
 
 <div ng-include src="'templates/footer.html'"></div>
