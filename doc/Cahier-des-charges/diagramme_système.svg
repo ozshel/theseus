@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" font-family="Arial" font-size="13" width="472" height="452">
+	<desc>UML diagram model</desc>
+	<g id="_dUPogBDmEDKHBesZMdH_SA">
+		<defs>
+			<linearGradient id="greyGradient" x1="0%" y1="0%" x2="0%" y2="100%" spreadMethod="pad">
+				<stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+				<stop offset="100%" stop-color="#E5E5E5" stop-opacity="1"/>
+				
+			</linearGradient>
+			<linearGradient id="packageGradient" x1="0%" y1="0%" x2="0%" y2="100%" spreadMethod="pad">
+				<stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+				<stop offset="100%" stop-color="#EFE9DE" stop-opacity="1"/>
+				
+			</linearGradient>
+			
+		</defs>
+		<g id="_fYeKEBDmEDKHBesZMdH_SA">
+			<ellipse cx="52" cy="197" rx="10" ry="10" fill="white" stroke="black" stroke-width="1.5"/>
+			<line x1="52" y1="207" x2="52" y2="241" stroke-width="1.5" stroke="black"/>
+			<line x1="52" y1="241" x2="65" y2="262" stroke-width="1.5" stroke="black"/>
+			<line x1="52" y1="241" x2="39" y2="262" stroke-width="1.5" stroke="black"/>
+			<line x1="65" y1="224" x2="39" y2="224" stroke-width="1.5" stroke="black"/>
+			<text x="52" y="277" text-anchor="middle" font-style="normal" font-weight="normal" fill="black">Utilisateur</text>
+			
+		</g>
+		<g id="_kiBd0BDmEDKHBesZMdH_SA">
+			<ellipse cx="299" cy="90" rx="97" ry="28" fill="url(#greyGradient)" stroke="#CCCCCC" stroke-width="1.0"/>
+			<text x="299" y="74" text-anchor="middle" font-style="normal" font-weight="bold" fill="#033656">
+				<tspan x="299" y="87" font-size="12" text-anchor="middle" dy="5">Interface utilisateur</tspan>
+				<tspan x="299" y="100" font-size="12" text-anchor="middle" dy="5">(site web)</tspan>
+				
+			</text>
+			
+		</g>
+		<g id="_8Tw0sBDmEDKHBesZMdH_SA">
+			<rect x="152" y="2" width="300" height="430" rx="2" ry="0" fill="#fff" fill-opacity="0.5" stroke="#CCCCCC" stroke-width="1"/>
+			<text x="157" y="20" font-style="normal" font-weight="bold" fill="#2d2d2d">Système THESEUS</text>
+			
+		</g>
+		<g id="_EBJ-MBDnEDKHBesZMdH_SA">
+			<ellipse cx="303" cy="220" rx="50" ry="28" fill="url(#greyGradient)" stroke="#CCCCCC" stroke-width="1.0"/>
+			<text x="303" y="204" text-anchor="middle" font-style="normal" font-weight="bold" fill="#033656">
+				<tspan x="303" y="217" font-size="12" text-anchor="middle" dy="5">Service web</tspan>
+				
+			</text>
+			
+		</g>
+		<g id="_GGQCcBDnEDKHBesZMdH_SA">
+			<ellipse cx="305" cy="350" rx="68" ry="28" fill="url(#greyGradient)" stroke="#CCCCCC" stroke-width="1.0"/>
+			<text x="305" y="334" text-anchor="middle" font-style="normal" font-weight="bold" fill="#033656">
+				<tspan x="305" y="347" font-size="12" text-anchor="middle" dy="5">Base des données</tspan>
+				
+			</text>
+			
+		</g>
+		<g id="_SWWiIBDnEDKHBesZMdH_SA">
+			<polyline fill="none" stroke-width="1" stroke="#000000" points="102,203 252,117"/>
+			
+		</g>
+		<g id="_TfAMQBDnEDKHBesZMdH_SA">
+			<polyline fill="none" stroke-width="1" stroke="#000000" points="299,117 302,192"/>
+			
+		</g>
+		<g id="_VIBYgRDnEDKHBesZMdH_SA">
+			<polyline fill="none" stroke-width="1" stroke="#000000" points="303,247 304,322"/>
+			
+		</g>
+		
+	</g>
+	
+</svg>
