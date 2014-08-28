@@ -1,0 +1,40 @@
+# USERs
+/users/list/
+/users/add/{{data}}/
+/users/update/{id}/{{data}}/
+/users/delete/{id}/
+/users/get/{id}/
+/users/form/
+
+# CATEGORIES
+/categories/list/
+/categories/add/{{data}}/
+/categories/update/{id}/{{data}}/
+/categories/delete/{id}/
+/categories/get/{id}/
+/categories/form/
+
+# ARTICLES
+/articles/list/
+/articles/best_sales/
+/articles/add/{{data}}/
+/articles/update/{id}/{{data}}/
+/articles/delete/{id}/
+/articles/get/{id}/
+/articles/form/
+
+# EVENTS
+/events/list/
+/events/add/{{data}}/
+/events/update/{id}/{{data}}/
+/events/delete/{id}/
+/events/get/{id}/
+/events/form/
+
+# MAKERS
+/makers/list/
+/makers/add/{{data}}/
+/makers/update/{id}/{{data}}/
+/makers/delete/{id}/
+/makers/get/{id}/
+/makers/form/
