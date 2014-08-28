@@ -1,0 +1,15 @@
+- Il faut mettre à jour le composer.json (il est à la racine du projet symfony)
+- php app/console assets:install web             => permet de créer les fichiers générés par les bundles 
+					          en statique dans le dossier web local
+- php app/console doctrine:database:create       => créer la base sqlite
+- php app/console doctrine:schema:update --force => force la modification des tables de la base
+						 ( Ici les tables vont être créé )
+- php app/console doctrine:fixtures:load         => permet de générer les fixtures( des données qui peupleront la base )
+
+
+
+
+
+Commandes utiles:
+- php app/console assetic:dump    => permet de "dumper" les fichiers js dans le répertoire web
+					( l'option --watch permet de laisser tourné la commande, utile pour tester les fichiers js)

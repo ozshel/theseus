@@ -1,9 +1,10 @@
 # This file is auto-generated during the composer install
 parameters:
-    database_driver: pdo_mysql
+    database_driver: pdo_sqlite
     database_host: localhost
     database_port: null
-    database_name: theseus
+    database_name: theseus.db
+    database_path: theseus
     database_user: root
     database_password: null
     mailer_transport: smtp
