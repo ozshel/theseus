@@ -8,10 +8,6 @@
 /web_service/web/bundles/
 /web_service/web/app_dev.php
 /web_service/app/bootstrap.php.cache
-/web_service/app/cache/dev/*
-!/web_service/app/cache/dev/.placeholder
-/web_service/app/cache/prod/*
-!/web_service/app/cache/prod/.placeholder
 /web_service/app/config/parameters.yml
 /web_service/app/config/config_local.yml
 /web_service/app/logs/*
