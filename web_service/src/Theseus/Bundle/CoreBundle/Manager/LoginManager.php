@@ -10,6 +10,8 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
 use Symfony\Component\Routing\Router;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 /**
  * @package Theseus\Bundle\CoreBundle\Manager
  */
@@ -33,7 +35,6 @@ class LoginManager implements AuthenticationSuccessHandlerInterface
      */
     public function __construct(Router $router, $doctrine)
     {
-//        echo 1;exit;
         $this->router = $router;
         $this->doctrine = $doctrine;
     }
@@ -60,7 +61,6 @@ class LoginManager implements AuthenticationSuccessHandlerInterface
      */
     private function getRedirectUrl($roles, $user)
     {
-//        echo 3;exit;
         $redirect = new RedirectResponse($this->router->generate('theseus_application_main_index'));        
         return $redirect;
         foreach ($roles as $role) {

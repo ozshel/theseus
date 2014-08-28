@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 class SecurityController extends ContainerAware
 {   
     public function loginAction(Request $request)
@@ -24,8 +26,7 @@ class SecurityController extends ContainerAware
             $error = '';
         }
 
-        if ($error) {
-            // TODO: this is a potential security risk (see http://trac.symfony-project.org/ticket/9523)
+        if ($error) {            
             $error = 'L\'e-mail ou le mot de passe saisi est incorrect';
         }
         // last username entered by the user
@@ -34,13 +35,12 @@ class SecurityController extends ContainerAware
         $csrfToken = $this->container->has('form.csrf_provider')
             ? $this->container->get('form.csrf_provider')->generateCsrfToken('authenticate')
             : null;
-//        $user = $this->container->get('security.context')->getToken()->getUser();
-//        var_dump($user);
         
         $params['last_username'] = $lastUsername;
         $params['error'] = $error;
         $params['csrf_token'] = $csrfToken;
         
+        return new JsonResponse($params);
         return $this->renderLogin($params);
     }
 
