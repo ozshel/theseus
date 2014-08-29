@@ -28,11 +28,16 @@ class LoadGroupData extends AbstractFixture
         $groupUser = new Group('Utilisateur');
         $groupUser->setRoles(array('ROLE_USER'));
         $manager->persist($groupUser);
+        
+        $groupProductAdmin = new Group('Gestionnaire produit');
+        $groupProductAdmin->setRoles(array('ROLE_PRODUCT_ADMIN'));
+        $manager->persist($groupProductAdmin);
 
         $manager->flush();
 
         $this->addReference('groupAdmin', $groupAdmin);
         $this->addReference('groupUser', $groupUser);
+        $this->addReference('groupProductAdmin', $groupProductAdmin);
 
     }
     

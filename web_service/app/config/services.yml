@@ -3,3 +3,6 @@ services:
     theseus.login_manager:
         class: Theseus\Bundle\CoreBundle\Manager\LoginManager
         arguments: [@router, @security.context]
+    theseus.user_manager:
+        class: Theseus\Bundle\CoreBundle\Manager\UserManager
+        arguments: [@doctrine.orm.entity_manager]

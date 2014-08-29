@@ -5,4 +5,9 @@ theseus_user:
 theseus_application_main:
     resource: "@TheseusApplicationBundle/Controller/MainController.php"
     type:     annotation
-    prefix:   /2.1/fr/main
+    prefix:   /2.1/fr/
+    
+theseus_application_user:
+    resource: "@TheseusApplicationBundle/Controller/UserController.php"
+    type:     annotation
+    prefix:   /2.1/fr/users

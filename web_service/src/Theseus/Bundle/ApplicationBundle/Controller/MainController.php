@@ -28,12 +28,7 @@ class MainController extends Controller
     public function indexAction()
     {
         $user = $this->get('security.context')->getToken()->getUser();
-        var_dump($user);die();
-        foreach($user->getGroups() as $group)
-        {
-//            var_dump($group);
-        }
-//        die();
+
         $array = [
             'test' => 245,
             'user' => $user

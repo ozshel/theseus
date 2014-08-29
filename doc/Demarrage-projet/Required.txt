@@ -13,3 +13,7 @@
 Commandes utiles:
 - php app/console assetic:dump    => permet de "dumper" les fichiers js dans le répertoire web
 					( l'option --watch permet de laisser tourné la commande, utile pour tester les fichiers js)
+- php app/console doctrine:generate:entities TheseusCoreBundle:nom_entité  => permet de générer les getter/setter automatiquement
+
+- php app/console router:debug    => permet de récupérer les chemins d'accès( donne aussi les chemins relatives pour les redirections
+				     avec symfony

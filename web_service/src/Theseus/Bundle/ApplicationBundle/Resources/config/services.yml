@@ -1,0 +1,5 @@
+services:
+    #managers
+    theseus.user_manager:
+        class: Theseus\Bundle\CoreBundle\Manager\UserManager
+        arguments: [@doctrine.orm.entity_manager]

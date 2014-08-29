@@ -1,0 +1,26 @@
+{
+	"data": 
+		[
+			
+			{
+				"id": ...,
+				"firstname": ...,
+				"lastname": ...,
+				"birthday": YYYY-MM-DD,
+				"phone": xxxxxxxxxx,
+				"created_at": YYYY-MM-DD H:i:s,
+				"address": {
+						"address": ...,
+						"city": ....,
+						"country: ....,
+						"additionalAddress": ... 
+					   }
+				"group": [
+					  	"ROLE_ADMIN",
+						"ROLE_PRODUCT_ADMIN,
+						etc...
+					 ]
+			}
+			
+		]
+}

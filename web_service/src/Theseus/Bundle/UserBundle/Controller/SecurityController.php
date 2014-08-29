@@ -40,7 +40,7 @@ class SecurityController extends ContainerAware
         $params['error'] = $error;
         $params['csrf_token'] = $csrfToken;
         
-        return new JsonResponse($params);
+//        return new JsonResponse($params);
         return $this->renderLogin($params);
     }
 
