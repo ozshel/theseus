@@ -18,5 +18,6 @@
 /web_service/bin/
 /web_service/composer.phar
 /web_service/composer.lock
+/web_service/src/Theseus/Database/
 *~
 /web_service/nbproject/private/
