@@ -20,7 +20,7 @@
             </span>
         </span>
 </ul>
-        <div ng-show="$index >= showStart" ng-class="{hidden: $index >= showEnd}"  class="col-md-3" ng-repeat="article in best_sales.slice().reverse()">
+        <div ng-show="$index >= showStart" ng-class="{hidden: $index >= showEnd}"  class="col-xs-3" ng-repeat="article in best_sales.slice().reverse()">
             <strong>{{article.id + 1}}</strong><br>
             <strong>{{article.name}}</strong><br>
         	REF:{{article.ref}}<br>
