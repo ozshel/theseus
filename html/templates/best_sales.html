@@ -20,13 +20,17 @@
             </span>
         </span>
 </ul>
-        <div ng-show="$index >= showStart" ng-class="{hidden: $index >= showEnd}"  class="col-xs-3" ng-repeat="article in best_sales.slice().reverse()">
-            <strong>{{article.id + 1}}</strong><br>
-            <strong>{{article.name}}</strong><br>
-        	REF:{{article.ref}}<br>
-        	{{article.price}}<br>
-        	<em>{{article.desc}}</em><br>
-        	<img class="img_item" src="{{article.img}}" alt="{{article.img}}"><br>
+        <div ng-show="$index >= showStart" ng-class="{hidden: $index >= showEnd}"  class="col-xs-3" ng-repeat="article in best_sales.slice()">
+            ID: <strong>{{article.id}}</strong><br>
+            Name: <strong>{{article.name}}</strong><br>
+        	REF: <strong>{{article.reference}}</strong><br>
+        	Price: <strong>{{article.price}}</strong><br>
+            Description: <em>{{article.description}}</em><br>
+            Category: <em>{{article.category}}</em><br>
+            Stock: <em>{{article.stock}}</em><br>
+            Maker: <em>{{article.maker}}</em><br>
+            Supplier: <em>{{article.supplier}}</em><br>
+        	<img class="img_item" src="{{article.image}}" alt="{{article.img}}"><br>
         	<!-- <a href="{{sale.link}}" target="_blank">View</a><br> -->
         	<button ng-click="ShowBestArticle(article.id)">View</button>
         	<!-- <div ng-show="showArticle" class="col-md-12">{{sale.long_desc}}<br></div> -->

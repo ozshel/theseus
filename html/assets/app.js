@@ -55,31 +55,26 @@ theseus.controller("LoginController", function($scope, $rootScope, ngDialog) {
             $rootScope.username = "toto";
             // $rootScope.roles = ['events', 'products', 'customers', 'power'];
             $rootScope.roles = ['events', 'customers'];
-            // console.log(typeof roles['event']);
             if($rootScope.roles.indexOf('events') > -1) {
                 // R customers
                 // R products
                 // RW events
-                console.log('events');
                 $rootScope.displayEventsMenu = true;
                 $rootScope.displayAdminMenu = true;
             }
             if($rootScope.roles.indexOf('products') > -1 ) {
                 // RW categories
                 // RW products
-                console.log('products');
                 $rootScope.displayProductsMenu = true;
                 $rootScope.displayAdminMenu = true;
             }
             if($rootScope.roles.indexOf('customers') > -1 ) {
                 // RW ??? only power ???
-                console.log('customers');
                 $rootScope.displayCustomersMenu = true;
                 $rootScope.displayAdminMenu = true;
             }
             if($rootScope.roles.indexOf('power') > -1) {
                 // RW all
-                console.log('power');
                 $rootScope.displayAdminMenu = true;
                 $rootScope.displayPowerMenu = true;
                 $rootScope.displayUsersMenu = true;
@@ -107,7 +102,6 @@ theseus.controller("LoginController", function($scope, $rootScope, ngDialog) {
         }
     }
     $rootScope.ToggleAdminMenus = function (item){
-        console.log(item);
         $scope.HideAllAdminMenu();
         if (item === 'displayAdmin') {
             $rootScope.displayAdmin = true;
@@ -180,23 +174,22 @@ theseus.controller("LoginController", function($scope, $rootScope, ngDialog) {
 theseus.controller("Articles", function($scope, $rootScope, $http, ngDialog) {
     $scope.GetCategories = function() { 
         $scope.categories = [];
-        $scope.categories.push({'id': '1', 'name': 'Auto', 'desc': 'blabla bla ...'});
-        $scope.categories.push({'id': '2', 'name': 'Mobile phones', 'desc': 'blabla bla ...'});
-        $scope.categories.push({'id': '3', 'name': 'Cats', 'desc': 'blabla bla ...'});
+        $http.get('/html/fake_webservice/category_list.json').success(function(data) {
+            $scope.categories = data.data[0];
+        });
+        // $scope.categories.push({'id': '1', 'name': 'Auto', 'desc': 'blabla bla ...'});
+        // $scope.categories.push({'id': '2', 'name': 'Mobile phones', 'desc': 'blabla bla ...'});
+        // $scope.categories.push({'id': '3', 'name': 'Cats', 'desc': 'blabla bla ...'});
     };
-    $scope.ArticlesCategory = function(id_category) {
-        console.log(id_category);
-        $http.get('/tmp/articles_by_category.json').success(function(data) {
-            $rootScope.articles_by_category = data;
-            $rootScope.selectedCategory = id_category;
-            console.log($rootScope.hideHomePage);
-            console.log('view article from category: ' + id_category);         
-            $rootScope.scaleArticles = 10;
+    $scope.ArticlesCategory = function(category) {
+        $http.get('/html/fake_webservice/product_by_category.json').success(function(data) {
+            $rootScope.articles_by_category = data.data[0];
+            $rootScope.selectedCategory = category.id;
+            $rootScope.selectedCategoryName = category.name;
+            $rootScope.scaleArticles = 4;
             $rootScope.hiddenArticles = 0;
             $rootScope.showStartArticles = 0;
             $rootScope.showEndArticles = $rootScope.scaleArticles;
-
-            console.log($scope.articles_by_category);
             if($rootScope.articles_by_category.length > 10) {
                 $rootScope.moreTenArticles = true;
 
@@ -207,31 +200,31 @@ theseus.controller("Articles", function($scope, $rootScope, $http, ngDialog) {
             $rootScope.hideHomePage = true;
         });
     }
-    $scope.UpdateArticlesCategory = function(id_category) {
+    $scope.UpdateArticlesCategory = function(category) {
         $rootScope.hideHomePage = true;
-        $scope.selectedCategory = id_category;
-        console.log($rootScope.hideHomePage);
-        console.log('view article from category: ' + id_category);         
-        $scope.scaleArticles = 10;
+        $scope.selectedCategory = category.id;     
+        $scope.scaleArticles = 4;
         $scope.hiddenArticles = 0;
         $scope.showStartArticles = 0;
         $scope.showEndArticles = $scope.scaleArticles;
         $scope.articles_by_category = [];
-        for (var i = 100 - 1; i >= 0; i--) {
-            $scope.articles_by_category.push(
-                {
-                    'id': i,
-                    'name': "Top cat",
-                    'ref': "1234567890",
-                    'price': "10$",
-                    'desc': "this is a cat",
-                    'img': "http://exmoorpet.com/wp-content/uploads/2012/08/cat.png",
-                    'link': "http://toto.com",
-                    "long_desc": "jhgjghjj dsfsdf sdf sf sf sf sf sdfsd fs fs fsd fsf sfsdf dsf sf sdsdfdsfsdfsfsdfs",
-                }
-            );
-        };
-        console.log($scope.articles_by_category);
+        $http.get('/html/fake_webservice/product_by_category.json').success(function(data) {
+            $rootScope.articles_by_category = data.data[0];
+        });
+        // for (var i = 100 - 1; i >= 0; i--) {
+        //     $scope.articles_by_category.push(
+        //         {
+        //             'id': i,
+        //             'name': "Top cat",
+        //             'ref': "1234567890",
+        //             'price': "10$",
+        //             'desc': "this is a cat",
+        //             'img': "http://exmoorpet.com/wp-content/uploads/2012/08/cat.png",
+        //             'link': "http://toto.com",
+        //             "long_desc": "jhgjghjj dsfsdf sdf sf sf sf sf sdfsd fs fs fsd fsf sfsdf dsf sf sdsdfdsfsdfsfsdfs",
+        //         }
+        //     );
+        // };
         if($scope.articles_by_category.length > 10) {
             $scope.moreTenArticles = true;
 
@@ -285,25 +278,29 @@ theseus.controller("Articles", function($scope, $rootScope, $http, ngDialog) {
 
     $scope.HidePrev = true;
     $scope.GetBestSales = function() {    
-        $scope.scale = 10;
+        $scope.scale = 4;
         $scope.hidden = 0;
         $scope.showStart = 0;
         $scope.showEnd = $scope.scale;
         $scope.best_sales = [];
-        for (var i = 100 - 1; i >= 0; i--) {
-            $scope.best_sales.push(
-                {
-                    'id': i,
-                    'name': "telephone",
-                    'ref': "1234567890",
-                    'price': "10$",
-                    'desc': "this is a telephone",
-                    'img': "http://exmoorpet.com/wp-content/uploads/2012/08/cat.png",
-                    'link': "http://toto.com",
-                    "long_desc": "jhgjghjj dsfsdf sdf sf sf sf sf sdfsd fs fs fsd fsf sfsdf dsf sf sdsdfdsfsdfsfsdfs",
-                }
-            );
-        };
+        $http.get('/html/fake_webservice/product_best_sales_list.json').success(function(data) {
+            $scope.best_sales = data.data[0];
+            console.log($rootScope.best_sales);
+        });
+        // for (var i = 100 - 1; i >= 0; i--) {
+        //     $scope.best_sales.push(
+        //         {
+        //             'id': i,
+        //             'name': "telephone",
+        //             'ref': "1234567890",
+        //             'price': "10$",
+        //             'desc': "this is a telephone",
+        //             'img': "http://exmoorpet.com/wp-content/uploads/2012/08/cat.png",
+        //             'link': "http://toto.com",
+        //             "long_desc": "jhgjghjj dsfsdf sdf sf sf sf sf sdfsd fs fs fsd fsf sfsdf dsf sf sdsdfdsfsdfsfsdfs",
+        //         }
+        //     );
+        // };
         if($scope.best_sales.length > 10) {
             $scope.moreTen = true;
 
@@ -313,9 +310,7 @@ theseus.controller("Articles", function($scope, $rootScope, $http, ngDialog) {
         }
     }
     $scope.ShowArticle = function(id) {
-        console.log('article' + id);
         $scope.article = $scope.articles_by_category[id];
-        console.log($scope.article);
         ngDialog.open({ 
             template: 'templates/article.html',
             scope: $scope,
@@ -324,9 +319,7 @@ theseus.controller("Articles", function($scope, $rootScope, $http, ngDialog) {
         ;    
     }
     $scope.ShowBestArticle = function(id) {
-        console.log('article' + id);
         $scope.article = $scope.best_sales[id];
-        console.log($scope.article);
         ngDialog.open({ 
             template: 'templates/article.html',
             scope: $scope,
@@ -381,7 +374,7 @@ theseus.controller("Articles", function($scope, $rootScope, $http, ngDialog) {
 theseus.controller("NextEvents", function($scope, ngDialog) {
     $scope.HidePrev = true;
     $scope.GetNextEvents = function() {
-        $scope.scale = 5;
+        $scope.scale = 4;
         $scope.hidden = 0;
         $scope.showStart = 0;
         $scope.showEnd = $scope.scale;
@@ -409,9 +402,7 @@ theseus.controller("NextEvents", function($scope, ngDialog) {
         }
     }
     $scope.ShowEvent = function(id) {
-        console.log('event' + id);
         $scope.event = $scope.next_events[id];
-        console.log($scope.event);
         ngDialog.open({ 
             template: 'templates/event.html',
             scope: $scope,
