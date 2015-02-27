@@ -15,6 +15,7 @@
 /web_service/app/logs/*
 /web_service/build/
 /web_service/vendor/
+
 /web_service/bin/
 /web_service/composer.phar
 /web_service/composer.lock
